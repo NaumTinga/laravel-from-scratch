@@ -16,16 +16,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\MainController@index')->name('main');
 
-Route::get('products', 'App\Http\Controllers\ProductsController@index')->name('products.index');
+// Simple way to create routes
+Route::resource('products', 'App\Http\Controllers\ProductsController');
 
-Route::get('products/create', 'App\Http\Controllers\ProductsController@create')->name('products.create');
+Auth::routes();
 
-Route::post('products', 'App\Http\Controllers\ProductsController@store')->name('products.store');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('products/{product}', 'App\Http\Controllers\ProductsController@show')->name('products.show');
 
-Route::get('products/{product}/edit', 'App\Http\Controllers\ProductsController@edit')->name('products.edit');
 
-Route::match(['put', 'patch'], 'products/{product}', 'App\Http\Controllers\ProductsController@update')->name('products.update');
 
-Route::delete('products/{product}', 'App\Http\Controllers\ProductsController@destroy')->name('products.destroy');
+//Other way to create routes
+// Route::get('products', 'App\Http\Controllers\ProductsController@index')->name('products.index');
+
+// Route::get('products/create', 'App\Http\Controllers\ProductsController@create')->name('products.create');
+
+// Route::post('products', 'App\Http\Controllers\ProductsController@store')->name('products.store');
+
+// Route::get('products/{product}', 'App\Http\Controllers\ProductsController@show')->name('products.show');
+
+// Route::get('products/{product}/edit', 'App\Http\Controllers\ProductsController@edit')->name('products.edit');
+
+// Route::match(['put', 'patch'], 'products/{product}', 'App\Http\Controllers\ProductsController@update')->name('products.update');
+
+// Route::delete('products/{product}', 'App\Http\Controllers\ProductsController@destroy')->name('products.destroy');
+// Auth::routes();

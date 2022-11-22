@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 @section('content')
 
     <h1> Update a Product</h1>
@@ -7,31 +7,31 @@
         @method('PUT')
         <div class="form-row">
             <label>Title</label>
-            <input class="form-control" type="text" name="title" value="{{ $product->title }}" required>
+            <input class="form-control" type="text" name="title" value="{{ old('title') ?? $product->title }}" required>
         </div>
         <div class="form-row">
             <label>Description</label>
-            <input class="form-control" type="text" name="description" value="{{ $product->description }}" required>
+            <input class="form-control" type="text" name="description" value="{{ old('description') ?? $product->description }}" required>
         </div>
         <div class="form-row">
             <label>Price</label>
-            <input class="form-control" type="number" min="1.00" step="0.01"  name="price" value="{{ $product->price }}" required>
+            <input class="form-control" type="number" min="1.00" step="0.01"  name="price" value="{{ old('price') ?? $product->price }}" required>
         </div>
         <div class="form-row">
             <label>Stock</label>
-            <input class="form-control" type="number" min="0" name="stock" value="{{ $product->stock }}" required>
+            <input class="form-control" type="number" min="0" name="stock" value="{{ old('stock') ?? $product->stock }}" required>
         </div>
         <div class="form-row">
             <label>Status</label>
-            <select class="custom-select" type="text" name="status" required>
-                <option value="available" {{ $product->status == 'availabe' ? 'selected' : '' }} > 
+            <select class="custom-select" type="text" name="status" >
+                <option value="available" {{ old('status') == 'available' ? 'selected' : ($product->status == 'availabe' ? 'selected' : '') }} required> 
                     Available
                 </option>
-                <option value="unavailable" {{ $product->status == 'unavailable' ? 'selected' : '' }}> Unavailable</option>
+                <option value="unavailable" {{ old('status') == 'unavailable' ? 'selected' : ($product->status == 'unavailable' ? 'selected' : '')}} required> Unavailable</option>
             </select>
         </div>
         <div class="form-row">
-           <button class="btn btn-primary btn-lg" type="submit">Update Product</button>
+           <button class="btn btn-primary btn-lg mt-3" type="submit">Update Product</button>
         </div>
     
     </form>

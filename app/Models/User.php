@@ -24,6 +24,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * 
+     * The attributes that should be mutated to dates
+     * @var array
+     */
+    protected $dates = [
+        'admin_since',
+    ];
+
+    /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
@@ -41,4 +50,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function orders(){
+        return $this->hasMany(Order::class, 'customer_id');
+    }
 }
