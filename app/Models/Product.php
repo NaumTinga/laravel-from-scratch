@@ -16,4 +16,14 @@ class Product extends Model
         'stock',
         'status',
     ];
+
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class)->withPivot('quantity'); //withPivot so we can get the attributes from the pivot table
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class)->withPivot('quantity'); 
+    }
 }
